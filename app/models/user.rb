@@ -6,6 +6,7 @@ class User < ApplicationRecord
   enum group: { admin: 0, engenheiro: 1, tecnico: 2, cliente: 3 }
 
   before_save :set_default_group
+  has_many :calls, dependent: :destroy
 
   private
 

@@ -17,7 +17,7 @@ class CallsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create call" do
     assert_difference("Call.count") do
-      post calls_url, params: { call: { client_id: @call.client_id, description: @call.description, opened_at: @call.opened_at, status: @call.status, technician_id: @call.technician_id, title: @call.title } }
+      post calls_url, params: { call: { description: @call.description, price: @call.price, title: @call.title } }
     end
 
     assert_redirected_to call_url(Call.last)
@@ -34,7 +34,7 @@ class CallsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update call" do
-    patch call_url(@call), params: { call: { client_id: @call.client_id, description: @call.description, opened_at: @call.opened_at, status: @call.status, technician_id: @call.technician_id, title: @call.title } }
+    patch call_url(@call), params: { call: { description: @call.description, price: @call.price, title: @call.title } }
     assert_redirected_to call_url(@call)
   end
 

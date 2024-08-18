@@ -1,4 +1,4 @@
 class Call < ApplicationRecord
-  belongs_to :client
-  belongs_to :technician
+  belongs_to :user
+  validates :title, :description, presence: true
 end

@@ -14,11 +14,8 @@ class CallsTest < ApplicationSystemTestCase
     visit calls_url
     click_on "New call"
 
-    fill_in "Client", with: @call.client_id
     fill_in "Description", with: @call.description
-    fill_in "Opened at", with: @call.opened_at
-    fill_in "Status", with: @call.status
-    fill_in "Technician", with: @call.technician_id
+    fill_in "Price", with: @call.price
     fill_in "Title", with: @call.title
     click_on "Create Call"
 
@@ -30,11 +27,8 @@ class CallsTest < ApplicationSystemTestCase
     visit call_url(@call)
     click_on "Edit this call", match: :first
 
-    fill_in "Client", with: @call.client_id
     fill_in "Description", with: @call.description
-    fill_in "Opened at", with: @call.opened_at
-    fill_in "Status", with: @call.status
-    fill_in "Technician", with: @call.technician_id
+    fill_in "Price", with: @call.price
     fill_in "Title", with: @call.title
     click_on "Update Call"
 

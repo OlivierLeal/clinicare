@@ -3,15 +3,9 @@
 one:
   title: MyString
   description: MyText
-  client: one
-  status: 1
-  technician: one
-  opened_at: 2024-08-17 20:49:50
+  price: 9.99
 
 two:
   title: MyString
   description: MyText
-  client: two
-  status: 1
-  technician: two
-  opened_at: 2024-08-17 20:49:50
+  price: 9.99
