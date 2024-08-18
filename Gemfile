@@ -14,6 +14,9 @@ gem "sqlite3", "~> 1.4"
 # Biblioteca de autenticação [https://github.com/heartcombo/devise]
 gem "devise", "~> 4.9"
 
+# Biblioteca para gerenciamento de permissões com base no grupo [https://github.com/varvet/pundit]
+gem 'pundit'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
