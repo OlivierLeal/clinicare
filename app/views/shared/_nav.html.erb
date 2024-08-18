@@ -4,6 +4,9 @@
         <% if user_signed_in?%>
             <%= link_to 'Chamados', calls_path, class: "text-lg font-semibold hover:text-blue-200" %>
         <% end %>
+        <% unless current_user.nil? || current_user.cliente?%>
+            <%= link_to 'Serviços', services_path, class: "text-lg font-semibold hover:text-blue-200" %>
+        <%end%>
     </div>
     <div>
         <% if user_signed_in? %>
