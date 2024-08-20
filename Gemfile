@@ -17,6 +17,9 @@ gem "devise", "~> 4.9"
 # Biblioteca para gerenciamento de permissões com base no grupo [https://github.com/varvet/pundit]
 gem 'pundit'
 
+# Biblioteca para exportar pdf com base no html + css [https://github.com/pdfkit/pdfkit]
+gem 'pdfkit', '~> 0.8.7.3'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :services
   resources :calls
-  devise_for :users
+  devise_for :users 
+  post "impimir", to: "services#gerar_ordem_servico", as: :imprimir
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

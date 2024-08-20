@@ -55,6 +55,17 @@ class ServicesController < ApplicationController
     end
   end
 
+  def gerar_ordem_servico
+    @services = Service.all
+    html = render_to_string(template: 'services/index', layout: false, formats: [:html])
+    kit = PDFKit.new(html)
+    kit.stylesheets << Rails.root.join('app', 'assets', 'stylesheets', 'application.css')
+    kit.stylesheets << Rails.root.join('app', 'assets', 'stylesheets', 'application.tailwind.css')
+    data = kit.to_pdf
+    filename = "nome.pdf" 
+    send_data(data, filename: filename, type: 'application/pdf', disposition: 'inline')
+  end
+
   private
 
     def set_service
