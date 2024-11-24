@@ -1,0 +1,12 @@
+<div class="container">
+  <h1 class="titulo">ÁREA DO CLIENTE</h1>
+
+  <div class="container">
+    <%= button_to 'Chamados', calls_path, method: :get, class: "button-escolha" %>
+    <%= button_to 'Sttus da Solicitação', calls_path, method: :get, class: "button-escolha" %>
+  </div>
+
+  <div class="sair-container">
+    <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "sair" %>
+  </div>
+</div>

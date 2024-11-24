@@ -1,3 +1,4 @@
+<% if current_user.nil?%>
 <div class="container">
   <div class="home-page">
     <%= image_tag("logo_cliente.png", alt: "Meu Logo", class: "logo-cliente", id: "logo-principal") %>
@@ -5,3 +6,6 @@
     <%= button_to 'Cadastrar', new_user_registration_path, method: :get, class: "button-home" %>
   </div>
 </div>
+<% else %>
+  <%= area_inicial %>
+<%end%>

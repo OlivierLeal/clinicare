@@ -23,7 +23,9 @@
   height: auto;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 2rem;
 }
 .home-page {
   width: 30vw;
@@ -58,4 +60,49 @@
 
 .button-home:hover {
   background-color: lightgray; 
+}
+.titulo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.button-escolha {
+  width: 20rem;
+  height: 8rem;
+  background-color: blue;
+  color: white;
+  border-radius: 30px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.button-escolha:hover {
+  background-color: darkblue;
+}
+
+.sair-container {
+  text-align: center;
+}
+
+.sair {
+  width: 10rem;
+  height: 3rem;
+  background-color: lightgray;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sair:hover {
+  background-color: gray;
 }
