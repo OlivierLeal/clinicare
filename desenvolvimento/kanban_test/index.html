@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status da Solicitação</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Página Inicial</a></li>
+                <li><a href="#">|</a></li>
+                <li><a href="#">Chamados</a></li>
+                <li><a href="#">|</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">|</a></li>
+                <li><a href="#">Usuários</a></li>
+            </ul>
+            <div class="user-info">
+                <span>adribaldo@gmail.com</span>
+                <a href="#" class="logout">| Sair</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Status da Solicitação</h1>
+        <div class="kanban-container">
+            <div class="kanban-column" id="recebido">
+                <h2>Solicitação Recebida</h2>
+                <div class="kanban-item" draggable="true">Sua solicitação foi registrada</div>
+                <div class="kanban-item" draggable="true">Sua solicitação está em análise</div>
+            </div>
+            <div class="kanban-column" id="andamento">
+                <h2>Em Andamento</h2>
+                <div class="kanban-item" draggable="true">O técnico iniciou o atendimento</div>
+                <div class="kanban-item" draggable="true">Atendimento em andamento</div>
+            </div>
+            <div class="kanban-column" id="concluido">
+                <h2>Concluído</h2>
+                <div class="kanban-item" draggable="true">Sua solicitação foi concluída</div>
+                <div class="kanban-item" draggable="true">Sua solicitação foi encerrada</div>
+            </div>
+        </div>
+        
+        <button class="order-button">Gerar Ordem de Serviço</button>
+    </main>
+</body>
+
+<script>
+function initDragAndDrop() {
+    const items = document.querySelectorAll('.kanban-item');
+    const columns = document.querySelectorAll('.kanban-column');
+
+    items.forEach((item) => {
+        item.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text', e.target.id);
+            setTimeout(() => e.target.classList.add('hidden'), 0);
+        });
+
+        item.addEventListener('dragend', (e) => {
+            e.target.classList.remove('hidden');
+        });
+    });
+
+    columns.forEach((column) => {
+        column.addEventListener('dragover', (e) => {
+            e.preventDefault(); 
+        });
+
+        column.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const draggedId = e.dataTransfer.getData('text');
+            const draggedElement = document.getElementById(draggedId);
+            column.appendChild(draggedElement);
+        });
+    });
+}
+
+document.querySelectorAll('.kanban-item').forEach((item, index) => {
+    item.id = `item-${index}`;
+});
+
+initDragAndDrop();
+
+</script>
+
+</html>
