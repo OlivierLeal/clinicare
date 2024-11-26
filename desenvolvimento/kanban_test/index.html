@@ -29,65 +29,11 @@
     </header>
 
     <main>
-        <h1>Status da Solicitação</h1>
-        <div class="kanban-container">
-            <div class="kanban-column" id="recebido">
-                <h2>Solicitação Recebida</h2>
-                <div class="kanban-item" draggable="true">Sua solicitação foi registrada</div>
-                <div class="kanban-item" draggable="true">Sua solicitação está em análise</div>
-            </div>
-            <div class="kanban-column" id="andamento">
-                <h2>Em Andamento</h2>
-                <div class="kanban-item" draggable="true">O técnico iniciou o atendimento</div>
-                <div class="kanban-item" draggable="true">Atendimento em andamento</div>
-            </div>
-            <div class="kanban-column" id="concluido">
-                <h2>Concluído</h2>
-                <div class="kanban-item" draggable="true">Sua solicitação foi concluída</div>
-                <div class="kanban-item" draggable="true">Sua solicitação foi encerrada</div>
-            </div>
-        </div>
         
-        <button class="order-button">Gerar Ordem de Serviço</button>
     </main>
 </body>
 
 <script>
-function initDragAndDrop() {
-    const items = document.querySelectorAll('.kanban-item');
-    const columns = document.querySelectorAll('.kanban-column');
-
-    items.forEach((item) => {
-        item.addEventListener('dragstart', (e) => {
-            e.dataTransfer.setData('text', e.target.id);
-            setTimeout(() => e.target.classList.add('hidden'), 0);
-        });
-
-        item.addEventListener('dragend', (e) => {
-            e.target.classList.remove('hidden');
-        });
-    });
-
-    columns.forEach((column) => {
-        column.addEventListener('dragover', (e) => {
-            e.preventDefault(); 
-        });
-
-        column.addEventListener('drop', (e) => {
-            e.preventDefault();
-            const draggedId = e.dataTransfer.getData('text');
-            const draggedElement = document.getElementById(draggedId);
-            column.appendChild(draggedElement);
-        });
-    });
-}
-
-document.querySelectorAll('.kanban-item').forEach((item, index) => {
-    item.id = `item-${index}`;
-});
-
-initDragAndDrop();
-
 </script>
 
 </html>

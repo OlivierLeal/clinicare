@@ -7,10 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-User.find_or_create_by!(email: 'olivierleal61@gmail.com') do |user|
-  user.password = 'chuva123'
-  user.password_confirmation = 'chuva123'
+User.find_or_create_by!(email: 'tecnico@tecnico.com') do |user|
+  user.password = '123456'
+  user.password_confirmation = '123456'
   user.group = 0 
 end
 
-puts "Usuário padrão criado com sucesso!"
+puts "Usuário técnico criado com sucesso!"
+
+User.find_or_create_by!(email: 'cliente@cliente.com') do |user|
+  user.password = '123456'
+  user.password_confirmation = '123456'
+  user.group = 3
+end
+
+puts "Usuário cliente criado com sucesso!"
