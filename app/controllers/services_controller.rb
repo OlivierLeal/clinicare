@@ -66,6 +66,12 @@ class ServicesController < ApplicationController
     send_data(data, filename: filename, type: 'application/pdf', disposition: 'inline')
   end
 
+  def kanban
+    id = params[:id]
+
+    @services = Service.find(id)
+  end
+
   private
 
     def set_service

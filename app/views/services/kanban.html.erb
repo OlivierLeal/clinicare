@@ -1,16 +1,17 @@
+<%= hidden_field_tag :status, @services %>
 <h1 class="h1">Status da Solicitação</h1>
 <div class="kanban-container">
-    <div class="kanban-column" id="recebido">
+    <div class="kanban-column" id="aguardando">
         <h2>Solicitação Recebida</h2>
         <div class="kanban-item" draggable="true">Sua solicitação foi registrada</div>
         <div class="kanban-item" draggable="true">Sua solicitação está em análise</div>
     </div>
-    <div class="kanban-column" id="andamento">
+    <div class="kanban-column" id="em_processo">
         <h2>Em Andamento</h2>
         <div class="kanban-item" draggable="true">O técnico iniciou o atendimento</div>
         <div class="kanban-item" draggable="true">Atendimento em andamento</div>
     </div>
-    <div class="kanban-column" id="concluido">
+    <div class="kanban-column" id="finalizado">
         <h2>Concluído</h2>
         <div class="kanban-item" draggable="true">Sua solicitação foi concluída</div>
         <div class="kanban-item" draggable="true">Sua solicitação foi encerrada</div>
@@ -20,6 +21,11 @@
 <button class="order-button">Gerar Ordem de Serviço</button>
 <script>
   function initDragAndDrop() {
+    
+    const service = document.getElementById('status');
+
+    console.log(service.status);
+
     const items = document.querySelectorAll('.kanban-item');
     const columns = document.querySelectorAll('.kanban-column');
 

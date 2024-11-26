@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :services
   resources :calls
-  get 'call/kanban', to: 'calls#kanban'
+  get 'services/kanban', to: 'services#kanban'
   devise_for :users 
   post "impimir", to: "services#gerar_ordem_servico", as: :imprimir
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
