@@ -12,6 +12,9 @@
   <body>
     <%= render 'shared/nav'%>
     <%= render 'shared/notice_alert'%>
+
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
