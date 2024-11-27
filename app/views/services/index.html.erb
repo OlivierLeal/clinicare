@@ -14,9 +14,6 @@
   <div id="services" class="min-w-full">
     <% @services.each do |service| %>
       <%= render service %>
-      <p>
-        <%= link_to "Mostrar este serviço", service, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
     <% end %>
   </div>
 </div>

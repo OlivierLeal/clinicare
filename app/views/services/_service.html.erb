@@ -8,6 +8,9 @@
         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
           Status
         </th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          
+        </th>
       </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -18,8 +21,11 @@
         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
           <%= service.status.humanize %>
         </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+          <%= link_to "Mostrar este serviço", service, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        </td>
       </tr>
-    </tbody>
+    </tbody>  
   </table>
 </div>
 
