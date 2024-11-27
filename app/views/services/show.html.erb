@@ -11,6 +11,6 @@
     <div class="inline-block ml-2">
       <%= button_to "Destruir este serviço", @service, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>
-    <%= button_to "Visualizar Kanban", services_kanban_path, method: :get, params: {id: @service.id}, class: "mt-2 rounded-lg py-3 px-5 bg-green-100 font-medium" %>
+    <%= button_to "Visualizar Kanban", kanban_service_path, method: :get, class: "mt-2 rounded-lg py-3 px-5 bg-green-100 font-medium" %>
   </div>
 </div>
