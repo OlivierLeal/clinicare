@@ -6,7 +6,8 @@
         <% end %>
         <% unless current_user.nil? || current_user.cliente?%>
             <%= link_to 'Serviços', services_path, class: "text-lg font-semibold hover:text-blue-200" %>
-            <%#= button_to 'Gerar', imprimir_path, method: :post, data: { turbo: false }, class: "text-lg font-semibold hover:text-blue-200" %>
+            <%#= button_to 'Gerar', imprimir_path, method: :post, data: { turbo: false }, class: "text-lg font-semibold hover:text-blue-200" %> 
+            <%= link_to 'Usuários', usuario_index_path, class: "text-lg font-semibold hover:text-blue-200" %>
         <%end%>
     </div>
     <div>

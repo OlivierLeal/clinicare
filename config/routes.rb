@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'usuario/index'
   get 'atualizar_status', to: 'services#atualizar_status', as: :atualizar_status
   get 'services/kanban', to: 'services#kanban', as: :kanban
   resources :services do
