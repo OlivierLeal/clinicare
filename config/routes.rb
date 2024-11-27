@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :services
+  get 'atualizar_status', to: 'services#atualizar_status', as: :atualizar_status
+  resources :services do
+    member do
+      get :kanban
+    end
+  end
   resources :calls
-  get 'services/kanban', to: 'services#kanban'
   devise_for :users 
   post "impimir", to: "services#gerar_ordem_servico", as: :imprimir
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

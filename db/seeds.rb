@@ -8,16 +8,16 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 User.find_or_create_by!(email: 'tecnico@tecnico.com') do |user|
-  user.password = '123456'
-  user.password_confirmation = '123456'
+  user.password = '1234567'
+  user.password_confirmation = '1234567'
   user.group = 0 
 end
 
 puts "Usuário técnico criado com sucesso!"
 
 User.find_or_create_by!(email: 'cliente@cliente.com') do |user|
-  user.password = '123456'
-  user.password_confirmation = '123456'
+  user.password = '1234567'
+  user.password_confirmation = '1234567'
   user.group = 3
 end
 

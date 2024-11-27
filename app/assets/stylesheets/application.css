@@ -121,7 +121,6 @@
 }
 
 .kanban-column {
-  width: 30%;
   background: #f0f0f0;
   padding: 10px;
   border-radius: 8px;
@@ -149,15 +148,15 @@
   opacity: 0.8;
 }
 
-#recebido {
+#aguardando {
   background-color: #D9534F;
 }
 
-#andamento {
+#em_processo {
   background-color: #F0AD4E;
 }
 
-#concluido {
+#finalizado {
   background-color: #5CB85C;
 }
 

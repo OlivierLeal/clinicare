@@ -68,8 +68,20 @@ class ServicesController < ApplicationController
 
   def kanban
     id = params[:id]
+    
+    service = Service.find(id)
+    @service = {id: service.id, status: service.status}
+  end
 
-    @services = Service.find(id)
+  def atualizar_status
+    begin
+      service = Service.find(params[:id])
+      status = Service.statuses[params[:status]]
+      service.update(status: status)
+      render json: { status: service.status }, status: :ok
+    rescue 
+      render json: { error: 'Erro ao atualizar o status' }, status: :unprocessable_entity
+    end
   end
 
   private

@@ -1,48 +1,39 @@
-<%= hidden_field_tag :status, @services %>
+<%= hidden_field_tag :status, @service.to_json %>
 <h1 class="h1">Status da Solicitação</h1>
 <div class="kanban-container">
     <div class="kanban-column" id="aguardando">
         <h2>Solicitação Recebida</h2>
-        <div class="kanban-item" draggable="true">Sua solicitação foi registrada</div>
-        <div class="kanban-item" draggable="true">Sua solicitação está em análise</div>
     </div>
     <div class="kanban-column" id="em_processo">
         <h2>Em Andamento</h2>
-        <div class="kanban-item" draggable="true">O técnico iniciou o atendimento</div>
-        <div class="kanban-item" draggable="true">Atendimento em andamento</div>
     </div>
     <div class="kanban-column" id="finalizado">
         <h2>Concluído</h2>
-        <div class="kanban-item" draggable="true">Sua solicitação foi concluída</div>
-        <div class="kanban-item" draggable="true">Sua solicitação foi encerrada</div>
     </div>
 </div>
         
 <button class="order-button">Gerar Ordem de Serviço</button>
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const service = JSON.parse(document.getElementById('status').value);
   function initDragAndDrop() {
-    
-    const service = document.getElementById('status');
-
-    console.log(service.status);
-
     const items = document.querySelectorAll('.kanban-item');
     const columns = document.querySelectorAll('.kanban-column');
-
+    
     items.forEach((item) => {
-        item.addEventListener('dragstart', (e) => {
-            e.dataTransfer.setData('text', e.target.id);
-            setTimeout(() => e.target.classList.add('hidden'), 0);
-        });
-
-        item.addEventListener('dragend', (e) => {
-            e.target.classList.remove('hidden');
-        });
+      item.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text', e.target.id);
+        setTimeout(() => e.target.classList.add('hidden'), 0);
+      });
+      
+      item.addEventListener('dragend', (e) => {
+        e.target.classList.remove('hidden');
+      });
     });
 
     columns.forEach((column) => {
-        column.addEventListener('dragover', (e) => {
-            e.preventDefault(); 
+      column.addEventListener('dragover', (e) => {
+        e.preventDefault(); 
         });
 
         column.addEventListener('drop', (e) => {
@@ -50,13 +41,60 @@
             const draggedId = e.dataTransfer.getData('text');
             const draggedElement = document.getElementById(draggedId);
             column.appendChild(draggedElement);
-        });
-    });
-}
+            fetch(`http://localhost:3000/atualizar_status?id=${service.id}&status=${column.id}`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Erro na requisição: ' + response.status);
+              }
+              return response.json();
+            })
+            .then(data => {
+              console.log('Resposta do servidor:', data);
+              switch (data.status) {
+                case 'aguardando':
+                  draggedElement.innerHTML = 'Sua solicitação foi registrada';
+                  break;
+                case 'em_processo':
+                  draggedElement.innerHTML = 'O técnico iniciou o atendimento';
+                  break;
+                case 'finalizado':
+                  draggedElement.innerHTML = 'Sua solicitação foi concluída';
+                  break;  
+                default:
+                  break;
+              }
+            })
+            .catch(error => {
+              console.error('Erro:', error); 
+            });
 
-document.querySelectorAll('.kanban-item').forEach((item, index) => {
-    item.id = `item-${index}`;
+          });
+    });
+  }
+  
+  const kanban = document.getElementById(service.status);
+  const div = document.createElement('div');
+  div.classList.add('kanban-item');
+  div.setAttribute('draggable', 'true');
+  switch (service.status) {
+    case 'aguardando':
+      div.innerHTML = 'Sua solicitação foi registrada';
+      break;
+    case 'em_processo':
+      div.innerHTML = 'O técnico iniciou o atendimento';
+      break;
+    case 'finalizado':
+      div.innerHTML = 'Sua solicitação foi concluída';
+      break;  
+    default:
+      break;
+  }
+  kanban.appendChild(div);
+
+  document.querySelectorAll('.kanban-item').forEach((item, index) => {
+      item.id = `item-${index}`;
+  });
+  initDragAndDrop();
 });
 
-initDragAndDrop();
 </script>
