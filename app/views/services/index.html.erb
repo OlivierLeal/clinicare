@@ -8,6 +8,7 @@
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Serviços</h1>
     <%= link_to "Novo Serviço", new_service_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= button_to "Visualizar Kanban", kanban_path, method: :get, class: "mt-2 rounded-lg py-3 px-5 bg-green-100 font-medium" %>
   </div>
 
   <div id="services" class="min-w-full">

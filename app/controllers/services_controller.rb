@@ -50,7 +50,7 @@ class ServicesController < ApplicationController
     @service.destroy
 
     respond_to do |format|
-      format.html { redirect_to services_url, notice: "Service was successfully destroyed." }
+      format.html { redirect_to services_url, notice: "Serviço excluído com sucesso." }
       format.json { head :no_content }
     end
   end
@@ -67,10 +67,7 @@ class ServicesController < ApplicationController
   end
 
   def kanban
-    id = params[:id]
-    
-    service = Service.find(id)
-    @service = {id: service.id, status: service.status}
+    @services = Service.all
   end
 
   def atualizar_status
@@ -78,7 +75,7 @@ class ServicesController < ApplicationController
       service = Service.find(params[:id])
       status = Service.statuses[params[:status]]
       service.update(status: status)
-      render json: { status: service.status }, status: :ok
+      render json: { service: service, call: service.call }, status: :ok
     rescue 
       render json: { error: 'Erro ao atualizar o status' }, status: :unprocessable_entity
     end

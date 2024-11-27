@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   get 'atualizar_status', to: 'services#atualizar_status', as: :atualizar_status
+  get 'services/kanban', to: 'services#kanban', as: :kanban
   resources :services do
     member do
-      get :kanban
     end
-  end
+  end 
   resources :calls
   devise_for :users 
   post "impimir", to: "services#gerar_ordem_servico", as: :imprimir

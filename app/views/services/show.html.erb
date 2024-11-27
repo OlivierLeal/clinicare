@@ -9,8 +9,8 @@
     <%= link_to "Editar este serviço", edit_service_path(@service), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Voltar para serviço", services_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
-      <%= button_to "Destruir este serviço", @service, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to "Destruir este serviço", @service, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-300 font-medium" %>
     </div>
-    <%= button_to "Visualizar Kanban", kanban_service_path, method: :get, class: "mt-2 rounded-lg py-3 px-5 bg-green-100 font-medium" %>
+    <button class="order-button">Gerar Ordem de Serviço</button>
   </div>
 </div>

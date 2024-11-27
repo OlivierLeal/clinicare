@@ -1,21 +1,33 @@
-<%= hidden_field_tag :status, @service.to_json %>
 <h1 class="h1">Status da Solicitação</h1>
 <div class="kanban-container">
-    <div class="kanban-column" id="aguardando">
-        <h2>Solicitação Recebida</h2>
+  
+  <div class="kanban-column" id="aguardando">
+    <h2>Solicitação Recebida</h2>
+    <%@services.each do |service|%>
+        <% if service.status == "aguardando" %>
+          <div class="kanban-item" draggable="true" id="<%= service.id%>"> Serviço - <b><%= service.call.title%></b>. Sua solicitação foi registrada</div>
+        <%end%>
+    <%end%>
     </div>
     <div class="kanban-column" id="em_processo">
         <h2>Em Andamento</h2>
+      <%@services.each do |service|%>
+        <% if service.status == "em_processo" %>
+          <div class="kanban-item" draggable="true" value="<%= service.id%>"> Serviço - <b><%= service.call.title%></b>. O técnico iniciou o atendimento</div>
+        <%end%>
+      <%end%>
     </div>
     <div class="kanban-column" id="finalizado">
-        <h2>Concluído</h2>
+      <h2>Concluído</h2>
+      <%@services.each do |service|%>
+        <% if service.status == "finalizado" %>
+            <div class="kanban-item" draggable="true" value="<%= service.id%>"> Serviço - <b><%= service.call.title%></b>. Sua solicitação foi concluída</div>
+        <%end%>
+      <%end%>
     </div>
 </div>
-        
-<button class="order-button">Gerar Ordem de Serviço</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const service = JSON.parse(document.getElementById('status').value);
   function initDragAndDrop() {
     const items = document.querySelectorAll('.kanban-item');
     const columns = document.querySelectorAll('.kanban-column');
@@ -41,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const draggedId = e.dataTransfer.getData('text');
             const draggedElement = document.getElementById(draggedId);
             column.appendChild(draggedElement);
-            fetch(`http://localhost:3000/atualizar_status?id=${service.id}&status=${column.id}`)
+            fetch(`http://localhost:3000/atualizar_status?id=${draggedElement.getAttribute('value')}&status=${column.id}`)
             .then(response => {
               if (!response.ok) {
                 throw new Error('Erro na requisição: ' + response.status);
@@ -50,15 +62,15 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
               console.log('Resposta do servidor:', data);
-              switch (data.status) {
+              switch (data.service.status) {
                 case 'aguardando':
-                  draggedElement.innerHTML = 'Sua solicitação foi registrada';
+                  draggedElement.innerHTML = `Serviço - <b>${data.call.title}</b>. Sua solicitação foi registrada`;
                   break;
                 case 'em_processo':
-                  draggedElement.innerHTML = 'O técnico iniciou o atendimento';
+                  draggedElement.innerHTML = `Serviço - <b>${data.call.title}</b>. O técnico iniciou o atendimento`;
                   break;
                 case 'finalizado':
-                  draggedElement.innerHTML = 'Sua solicitação foi concluída';
+                  draggedElement.innerHTML = `Serviço - <b>${data.call.title}</b>. Sua solicitação foi concluída`;
                   break;  
                 default:
                   break;
@@ -71,26 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
           });
     });
   }
-  
-  const kanban = document.getElementById(service.status);
-  const div = document.createElement('div');
-  div.classList.add('kanban-item');
-  div.setAttribute('draggable', 'true');
-  switch (service.status) {
-    case 'aguardando':
-      div.innerHTML = 'Sua solicitação foi registrada';
-      break;
-    case 'em_processo':
-      div.innerHTML = 'O técnico iniciou o atendimento';
-      break;
-    case 'finalizado':
-      div.innerHTML = 'Sua solicitação foi concluída';
-      break;  
-    default:
-      break;
-  }
-  kanban.appendChild(div);
-
   document.querySelectorAll('.kanban-item').forEach((item, index) => {
       item.id = `item-${index}`;
   });
