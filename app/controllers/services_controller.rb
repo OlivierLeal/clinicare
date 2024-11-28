@@ -92,6 +92,6 @@ class ServicesController < ApplicationController
     end
 
     def service_params
-      params.require(:service).permit(:call_id, :status)
+      params.require(:service).permit(:call_id, :status, :custo)
     end
 end

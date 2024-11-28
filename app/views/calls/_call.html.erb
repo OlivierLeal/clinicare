@@ -25,7 +25,7 @@
           <%= call.description %>
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-          <%= number_to_currency(call.price, unit: "R$", delimiter: ".", format: "%u %n") %>
+          R$ <%= call.getService.custo%>
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
           <%= link_to "Mostrar este chamado", call, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
