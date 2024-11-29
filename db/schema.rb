@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_28_210335) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_29_102917) do
   create_table "calls", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -46,5 +46,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_28_210335) do
   end
 
   add_foreign_key "calls", "users"
-  add_foreign_key "services", "calls"
+  add_foreign_key "services", "calls", on_delete: :cascade
 end

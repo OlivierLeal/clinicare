@@ -1,6 +1,6 @@
 class Call < ApplicationRecord
   belongs_to :user
-  has_many :services, dependent: :destroy
+  has_one :service, dependent: :destroy
   validates :title, :description, presence: true
 
 
